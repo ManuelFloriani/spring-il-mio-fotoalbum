@@ -1,6 +1,6 @@
 package org.java.finalprove.photoalbum.service;
 
-import org.java.finalprove.photoalbum.controller.exception.PhotoNotFoundException;
+import org.java.finalprove.photoalbum.exception.PhotoNotFoundException;
 import org.java.finalprove.photoalbum.model.Photo;
 import org.java.finalprove.photoalbum.repository.PhotoRepository;
 import org.springframework.beans.factory.annotation.Autowired;

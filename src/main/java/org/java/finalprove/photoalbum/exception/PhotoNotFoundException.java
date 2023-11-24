@@ -1,4 +1,4 @@
-package org.java.finalprove.photoalbum.controller.exception;
+package org.java.finalprove.photoalbum.exception;
 
 public class PhotoNotFoundException extends RuntimeException{
     public PhotoNotFoundException(String message) {
