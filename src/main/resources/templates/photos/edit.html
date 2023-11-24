@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+<head th:insert="fragments/resources :: headResources('Photo List')"></head>
+<body>
+<nav th:replace="fragments/navbar :: topNavbar('photos')"></nav>
+<div class="container">
+    <h1>Edit photo</h1>
+    <form th:action="@{/photos/edit/{id}(id=*{id})}" method="POST" id="photo-edit" th:object="${photo}" class="row g-3">
+        <!--    Title   -->
+        <div class="col-md-6">
+            <label for="title" class="form-label">Title</label>
+            <input
+                    type="text"
+                    class="form-control"
+                    id="title"
+                    name="title"
+                    th:field="*{title}"
+            >
+        </div>
+        <!--    Description   -->
+        <div class="col-md-6">
+            <label for="description" class="form-label">Description</label>
+            <input
+                    type="text"
+                    class="form-control"
+                    id="description"
+                    name="description"
+                    th:field="*{description}"
+            >
+        </div>
+        <!--    Image URL   -->
+        <div class="col-md-6">
+            <label for="imageUrl" class="form-label">Image URL</label>
+            <input
+                    type="text"
+                    class="form-control"
+                    id="imageUrl"
+                    name="imageUrl"
+                    th:field="*{imageUrl}"
+            >
+        </div>
+        <!--    Category   -->
+        <div class="col-md-6">
+            <div class="form-check" th:each="category : ${categoryList}">
+                <input
+                        class="form-check-input"
+                        type="checkbox"
+                        th:value="${category.id}"
+                        th:id="|category_${category.id}|"
+                        th:field="*{categories}"
+                >
+                <label class="form-check-label" th:for="|category_${category.id}|" th:text="${category.name}"></label>
+            </div>
+        </div>
+        <!--    Visible    -->
+        <div class="col-md-6">
+            <div class="form-check">
+                <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="visibility"
+                        name="visibility"
+                        th:field="*{visibility}"
+                >
+                <label class="form-check-label" for="visibility">Visible</label>
+            </div>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Edit</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

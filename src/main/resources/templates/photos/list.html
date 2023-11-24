@@ -8,39 +8,97 @@
     <!--        <span th:text="${message}"></span>-->
     <!--        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>-->
     <!--    </div>-->
-    <h1 style="margin-top: 40px;">Lista Foto</h1>
-    <div class="d-flex align-items-center justify-content-between">
-        <div class="my-3">
-            <a th:href="@{/photos/create}" class="btn btn-light" sec:authorize="hasAuthority('ADMIN')">Aggiungi nuova
-                foto</a>
+    <h1 style="margin-top: 40px;">Photo Portfolio</h1>
+    <div class="d-flex align-items-center justify-content-around">
+        <div class="my-3"  sec:authorize="hasAuthority('ADMIN')">
+            <h2>
+                <a th:href="@{/photos/create}">
+                    <i class="fa-solid fa-circle-plus text-warning"></i>
+                </a>
+            </h2>
         </div>
         <form th:action="@{/photos}" method="GET">
             <div class="input-group">
                 <input
                         type="text"
-                        placeholder="Cerca per titolo"
+                        placeholder="Search by title"
                         class="form-control" name="search"
                         th:value="${param.search}"
                 >
-                <button class="btn btn-light" style="border: 1px solid black;" type="submit">Cerca</button>
+                <button class="btn btn-light" style="border: 1px solid black;" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
         </form>
     </div>
 
     <div th:if="${photoList.empty}" class="alert alert-info" style="margin-top: 30px;">
-        <h2>Nessuna foto presente in lista.</h2>
+        <h2>Portfolio is empty.</h2>
     </div>
 
     <div class="d-flex align-items-center flex-wrap" style="gap: 20px; margin: 30px 0;">
-        <div th:each="photo : ${photoList}" class="card" style="width: calc(100% / 3 - 15px);">
-            <img th:src="${photo.imageUrl}" class="card-img-top" th:alt="${photo.title}">
+        <div th:if="${photo.visibility}" th:each="photo : ${photoList}" class="card" style="width: calc(100% / 3 - 15px);">
+            <a th:href="@{/photos/show/{id}(id=${photo.id})}" class="btn btn-light">
+                <img th:src="${photo.imageUrl}" class="card-img-top" th:alt="${photo.title}">
+            </a>
+
             <div class="card-body">
                 <h5 class="card-title" th:text="${photo.title}"></h5>
                 <p class="card-text" th:text="${photo.description}"></p>
             </div>
+            <div class="card-footer">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h3 sec:authorize="hasAuthority('ADMIN')">
+                        <a th:href="@{/photos/edit/{id}(id=${photo.id})}">
+                            <i class="fa-solid fa-pen-to-square text-warning"></i>
+                        </a>
+                    </h3>
+                    <span class="badge rounded-pill text-bg-info" th:each="category : ${photo.categories}" th:text="${category.name}"></span>
+                    <h3 sec:authorize="hasAuthority('ADMIN')">
+                        <form th:action="@{/photos/delete/{id}(id=${photo.id})}" method="POST">
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </form>
+
+                    </h3>
+                </div>
+            </div>
         </div>
     </div>
+                                                <!--           ############################            -->
+                                                <!--  ######### NOT VISIBLE PHOTOS SECTION ##########  -->
+                                                <!--           ############################            -->
+    <h2>Not visible photos</h2>
+    <div class="d-flex align-items-center flex-wrap" style="gap: 20px; margin: 30px 0;">
+        <div th:unless="${photo.visibility}" sec:authorize="hasAuthority('ADMIN')" th:each="photo : ${photoList}" class="card" style="width: calc(100% / 3 - 15px);">
+            <a th:href="@{/photos/show/{id}(id=${photo.id})}" class="btn btn-light">
+                <img th:src="${photo.imageUrl}" style="filter:blur(3px)" class="card-img-top" th:alt="${photo.title}">
+            </a>
 
+            <div class="card-body">
+                <h5 class="card-title" th:text="${photo.title}"></h5>
+                <p class="card-text" th:text="${photo.description}"></p>
+            </div>
+            <div class="card-footer">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h3 sec:authorize="hasAuthority('ADMIN')">
+                        <a th:href="@{/photos/edit/{id}(id=${photo.id})}">
+                            <i class="fa-solid fa-pen-to-square text-warning"></i>
+                        </a>
+                    </h3>
+                    <span class="badge rounded-pill text-bg-info" th:each="category : ${photo.categories}" th:text="${category.name}"></span>
+                    <h3 sec:authorize="hasAuthority('ADMIN')">
+                        <form th:action="@{/photos/delete/{id}(id=${photo.id})}" method="POST">
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </form>
+
+                    </h3>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
 <script th:replace="fragments/resources :: jsResources"></script>
 </body>
