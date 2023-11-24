@@ -25,6 +25,14 @@ public class PhotoService {
         }
     }
 
+    public List<Photo> getPhotoListAPI(Optional<String> search) {
+        if (search.isPresent()) {
+            return photoRepository.findByTitleContainingIgnoreCase(search.get());
+        } else {
+            return photoRepository.findAllByVisibilityTrue();
+        }
+    }
+
     public Photo getPhotoById(Integer id) {
         Optional<Photo> result = photoRepository.findById(id);
         if (result.isPresent()) {
