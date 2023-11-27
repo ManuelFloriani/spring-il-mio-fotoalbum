@@ -15,10 +15,10 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
                 .requestMatchers("/photos", "/photos/show/**").hasAuthority("ADMIN")
-                .requestMatchers("/users", "/categories", "/messages").hasAuthority("ADMIN")            // Index        USERS-CATEGORIES-MESSAGES
-                .requestMatchers("/photos/create").hasAuthority("ADMIN")                                // Create       PHOTO
-                .requestMatchers("/photos/edit/**").hasAuthority("ADMIN")                               // Edit         PHOTO
-                .requestMatchers("/photos/delete/**", "/categories/delete/**").hasAuthority("ADMIN")    // Delete       PHOTO-CATEGORIES
+                .requestMatchers("/categories", "/messages").hasAuthority("ADMIN")
+                .requestMatchers("/photos/create").hasAuthority("ADMIN")
+                .requestMatchers("/photos/edit/**").hasAuthority("ADMIN")
+                .requestMatchers("/photos/delete/**", "/categories/delete/**").hasAuthority("ADMIN")
                 .requestMatchers(HttpMethod.POST, "/photos/**", "/categories/**").hasAuthority("ADMIN")
                 .requestMatchers("/**").permitAll()
                 .and().formLogin()
