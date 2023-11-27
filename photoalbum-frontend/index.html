@@ -11,13 +11,17 @@
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="app.css">
-    <title>Fotografo</title>
+    <title>Portfolio</title>
 </head>
 
 <body>
     <div class="container">
         <h1 style="margin: 40px 0;">Portfolio</h1>
-        <div>
+        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Send a message!
+        </a>
+
+        <div class="collapse" id="collapseExample">
             <form id="formContact">
                 <h2 style="margin-bottom: 20px;">Contact me</h2>
                 <div class="mb-3">
@@ -36,7 +40,25 @@
                         <strong></strong>
                     </span>
                 </div>
-                <button type="submit" class="btn btn-light">Send</button>
+                <button type="submit" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">Send</button>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header bg-success">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Message send successfully!</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Your reply will be in your mailbox as soon as possible!
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </form>
         </div>
 

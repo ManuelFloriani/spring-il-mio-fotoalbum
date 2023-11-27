@@ -36,7 +36,7 @@ public class DatabaseUserDetails implements UserDetails {
     ///////////// METHODS /////////////
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        return this.authorities;
     }
 
     @Override
@@ -69,4 +69,7 @@ public class DatabaseUserDetails implements UserDetails {
         return true;
     }
 
+
+
 }
+

@@ -20,9 +20,9 @@
                 method="POST"
                 th:object="${categoryObj}"
         >
-            <h3 style="position: relative; top: 20px; color: white;">Insert new category</h3>
+            <h3 style="position: relative; top: 20px;">Insert new category</h3>
             <div class="d-flex" style="margin-bottom: 30px; align-items: flex-start">
-                <div th:insert="fragments/components :: formField('text', '', 'name')"></div>
+                <div th:insert="fragments/components :: formField('text', '', 'name')" placeholder="Insert new category name"></div>
                 <button class="btn btn-primary" type="submit" style="position: relative; top: 24px;">+</button>
             </div>
         </form>

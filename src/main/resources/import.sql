@@ -1,8 +1,12 @@
 -- PHOTOS
 INSERT INTO photos (title, description, image_url, visibility) VALUES ('Afghan Girl', 'Beautiness in poor condition', 'https://richardsonphotos.files.wordpress.com/2016/09/afghan-girl.jpg?w=840', true);
 INSERT INTO photos (title, description, image_url, visibility) VALUES ('Famous Hill', 'It could be a memorable wallpaper', 'https://www.hwupgrade.it/i/n/windowsxp_bliss4k_720.jpg', true);
-INSERT INTO photos (title, description, image_url, visibility) VALUES ('The Moon', 'Moon and stars in bright night', 'https://www.hwupgrade.it/i/n/windowsxp_moon_720.jpg', true);
-INSERT INTO photos (title, description, image_url, visibility) VALUES ('The Beach', 'A beautiful beach', 'https://www.hwupgrade.it/i/n/windowsxp_beach_720.jpg', true);
+INSERT INTO photos (title, description, image_url, visibility) VALUES ('War is over', 'Happiness for the end of the war', 'https://phototraces.b-cdn.net/wp-content/uploads/2019/10/id_Iconic_Images_Alfred_Eisenstaedt_V-J_Day_in_Times_Square.jpg', true);
+INSERT INTO photos (title, description, image_url, visibility) VALUES ('Cross on the stripes', '4 random people cross the road', 'https://cdn.catawiki.net/assets/marketing/uploads-files/46881-a1b23282e88b18c0f713b0ddd2cf2e6785c19267-story_inline_image.jpg', true);
+INSERT INTO photos (title, description, image_url, visibility) VALUES ('Tongue out', 'What a physic!', 'https://www.invaluable.com/blog/wp-content/uploads/sites/77/2023/01/Einstein-670x981.jpg', false);
+INSERT INTO photos (title, description, image_url, visibility) VALUES ('History was made', 'And then sadly deleted', 'https://zupimages.net/up/21/32/wpxw.jpg', true);
+
+
 
 -- USERS
 INSERT INTO users (first_name, last_name, email, password) VALUES ('admin', 'test', 'admintest@mail.com', '{noop}password');
@@ -39,3 +43,6 @@ INSERT INTO photos_categories (photo_id, categories_id) VALUES (2, 3);
 INSERT INTO photos_categories (photo_id, categories_id) VALUES (3, 3);
 INSERT INTO photos_categories (photo_id, categories_id) VALUES (2, 6);
 INSERT INTO photos_categories (photo_id, categories_id) VALUES (3, 6);
+
+-- MESSAGES
+INSERT INTO messages (body, sender_email) VALUES ('Ciao!', 'ciao@mail.it');

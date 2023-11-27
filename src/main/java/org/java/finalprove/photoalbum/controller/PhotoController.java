@@ -1,8 +1,12 @@
 package org.java.finalprove.photoalbum.controller;
 
 import jakarta.validation.Valid;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.java.finalprove.photoalbum.exception.PhotoNotFoundException;
 import org.java.finalprove.photoalbum.model.Photo;
+import org.java.finalprove.photoalbum.model.User;
+import org.java.finalprove.photoalbum.repository.UserRepository;
+import org.java.finalprove.photoalbum.security.DatabaseUserDetails;
 import org.java.finalprove.photoalbum.service.CategoryService;
 import org.java.finalprove.photoalbum.service.PhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +28,12 @@ public class PhotoController {
 
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private UserRepository userRepository;
 
     // Rotta photos
     @GetMapping
-    public String index(@RequestParam Optional<String> search, Model model) {
+    public String index(@RequestParam Optional<String> search, Model model, Authentication authentication) {
         model.addAttribute("photoList", photoService.getPhotoList(search));
         return "photos/list";
     }
